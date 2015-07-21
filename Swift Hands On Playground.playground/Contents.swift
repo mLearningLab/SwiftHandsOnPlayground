@@ -7,7 +7,7 @@
 //: Como dicta la tradición, tu primer programa en Swift
 //: sirve para imprimir **"Hola Mundo!"** solo se
 //: requiere **una línea** para escribir este programa:
-println("Hola Mundo!")
+println("Hola Mundo!") // View on Assitant Editor
 //: A diferencia de otros lenguajes, como Java y C/C++, **no** es necesario:
 //: * Definir una función y/o clase, e.g. *main()*
 //: * Importar alguna librería para imprimir, e.g. *<sdtio.h>*
@@ -45,16 +45,14 @@ let  area = Int(π * pow(radio,2))
 "El área real es \(π * pow(radio,2))"
 //: ### 1.2.3 OPCIONALES
 var captura_edad: Int? = 15
-
 if captura_edad != nil {
     let tmp = captura_edad!
     "Has vivido \(12 * tmp) meses"
 } else {
-    "Error: edad incorrecta o en blanco!"
+    "Error: edad incorrecta o vacía!"
 }
 //: Caso #2 -- Usando __if let__
 captura_edad =  15 // Try: nil
-
 if let tmp = captura_edad {
     "Has vivido \(12 * tmp) meses"
 } else {
@@ -91,58 +89,56 @@ for x in 0...100 {
     let d = Double(x)
     d * sin(d * M_PI/8) // Show result, click (+) icon
 }
+println("for loop ala C")
+for var i=1; i<9; i++ { print("👏") }
+println("\nDon't care for loop")
+for _ in 1..<9 { print("👏") }
+println("\ndo/while loop")
+var i=1
+do { println(i++) } while i<5
 //: ### 1.3.4 FUNCIONES
 func fib(n:Int) -> Int {
     switch n {
-    case _ where n < 2: // "let p where p<2" or "case 0, 1:"
+    case 0, 1: // "let x where x<2", "_ where n<2"
         return 1
     default:
         return fib(n-1) + fib(n-2)
     }
 }
-fib(-3)
-for i in 1...9 {
-    fib(i)
+fib(3) // Bug: fib(-3)
+for i in 1...6 {
+    fib(i) // Graph if click on "Show Result"
 }
 //: ## 1.4 ARREGLOS
 var sec = [Int]()
-
 for n in 1...6 {
     sec.append(fib(n))
 }
-
-sec.reverse()
-
+println(sec)
+println(sec.reverse())
+println(sec[3...5])
 var k = [Character]()
-for x in "oracle".uppercaseString {
+for x in "elcaro".uppercaseString {
     k.insert(x, atIndex:0)
 }
-String(k)
+println(k)
 //: ## EJERCICIOS
-var t = ""
-for s in 1...10 {
-    t += "\(s)) Beto "
+// Reduce angles to given constraint
+func nearValue(value: Int, range: ClosedInterval<Int> ) ->  Int {
+    return abs(range.start - value) < abs(value - range.end) ? range.start : range.end
 }
-println(t)
 
-var valores = "abcdefg"
-var t2 = ""
-for s in valores {
-    t2 += "\(s)) Beto "
+func applyConstraint(value: Int, range: ClosedInterval<Int> ) -> Int {
+    return range.contains(value) ? value : nearValue(value,range)
 }
-println(t2)
 
-var costos = [2_135.50, 345.43, 117_235.25]
-var t3 = ""
-for s in costos {
-    t3 += "$\(s), Beto, "
+let ct:[ClosedInterval<Int>] = [10...60, -30...75, 0...70]
+let ang = [80, -40, 90]
+var vf = [Int]()
+for (i,a) in enumerate(ang) {
+    vf.append(applyConstraint(a, ct[i]))
 }
-println(t3)
-costos[0...1]
-
-for var i=0; i<10; i++ {
-    i
-}
+println(vf)
 //: ## QUIZ
 //: 1)
 //: 2)
