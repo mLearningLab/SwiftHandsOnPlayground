@@ -48,17 +48,17 @@ var captura_edad: Int? = 15
 
 if captura_edad != nil {
     let tmp = captura_edad!
-    println("Has vivido \(12 * tmp) meses")
+    "Has vivido \(12 * tmp) meses"
 } else {
-    println("Error: edad incorrecta o en blanco!")
+    "Error: edad incorrecta o en blanco!"
 }
 //: Caso #2 -- Usando __if let__
 captura_edad =  15 // Try: nil
 
 if let tmp = captura_edad {
-    println("Has vivido \(12 * tmp) meses")
+    "Has vivido \(12 * tmp) meses"
 } else {
-    println("Error: edad incorrecta o en blanco!")
+    "Error: edad incorrecta o en blanco!"
 }
 //: ## 1.3 SENTENCIAS DE CONTROL
 //: -----
@@ -70,7 +70,7 @@ if let d = dato.toInt() { // dato es opcional
     "Error"
 }
 //: ### 1.3.2 DECISION: SENTENCIA SWITCH
-var p = 30
+var p = 30 // Try me! Change p values
 
 switch p {
 case 10...20:
@@ -78,23 +78,18 @@ case 10...20:
 case 21..<30:
     println("21...29")
 default:  // Error si no consideramos todos los casos
-    println("No esta en un rango, es \(p)")
+    "No esta en un rango, es \(p)"
 }
 //: ### 1.3.3 CICLO: SENTENCIA FOR
-var s = 0
-for i in 20..<30 {
-    s += i
-}
-s
-for i in 1...4 {
+for i in 24..<30 { // View on Assitant Editor
     println(i)
 }
-for i in "Swift" {
+for i in "Swift" { // View on Assitant Editor
     println(i)
 }
 for x in 0...100 {
     let d = Double(x)
-    d * sin(d * M_PI/8)
+    d * sin(d * M_PI/8) // Show result, click (+) icon
 }
 //: ### 1.3.4 FUNCIONES
 func fib(n:Int) -> Int {
