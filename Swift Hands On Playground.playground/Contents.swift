@@ -129,53 +129,31 @@ println(k)
 //: ## QUIZ
 //: 1. Cómo expreso correctamente una fracción constante?Modifique la expresión para obtener una constante de  precisión sencilla de punto flotante
 // let medio = 1 / 2
-let medio = Float(1.0 / 2.0)
 //: 2. Imprima a cuántos litros equivale un medio galón usando interpolación de texto con dos decimales de precisión
 let galon: Float = 3.7854118
-println(String(format: "medio galón son %0.2f litros", medio * galon))
+//println() // medio * galon
 //: 3. Cómo especifico correctamente un número opcional para la variable díasDeEstancia
 // var díasDeEstancia = nil
-var díasDeEstancia: Int? = nil
 //: 4. Cómo calculo para todos los casos, el número total de días de viaje? Para ello debo sumar los días de transporte y estancia. __Nota:__ Si no se especifican días de estancia, asuma un valor de un día.
 let díasTransporte = 2
-let totalDíasViaje = (díasDeEstancia ?? 1) + díasTransporte
+// let totalDíasViaje = díasDeEstancia + díasTransporte // error when nil happens!
 //: 5. Escriba una sentencia switch/case que dado el peso de una persona imprima peso normal si esta entre 60 y 75 kgs, desnutrición de 50 a menos de 60 kgs y obesidad para más de 75 kgs. Cualquier otro caso debe reportar peso anormal
 let peso = 80
-switch peso {
-case 50..<60:
-    println("Desnutrición")
-case 60...75:
-    println("Normal")
-case _ where peso > 75:
-    println("Obesidad")
-default:
-    println("Peso anormal")
-}
+// switch peso {
+// cases
+// }
 //: 6. Declare un ciclo que imprima los valores pares dentro de un rango entero, ej. de 10 a 30
-for i in 10...30 {
-    if i % 2 == 0 {
-        println(i)
-    }
-}
+// for loop
 //: 7. Defina una función r2a(rangoEntero) -> arregloEntero que convierta un rango entero a un arreglo filtrando sólo los valores pares, ej. r2a(5...13) regresa [6,8,10,12]
-func r2a(r: Range<Int>) -> [Int] {
-    var v = [Int]()
-    for i in r {
-        if i % 2 == 0 {
-            v.append(i)
-        }
-    }
-    return v
-}
-
-r2a(5...13)
+// func r2a(r: Range<Int>) -> [Int]
+// r2a(5...13) // prints [6,8,10,12]
 //: 8. AVANZADO: Sea un arreglo de rangos de giro de cada extremidad (rango) y un arreglo de ángulos enteros de giro captados (ang), defina la función applyConstraint() que verifica para cada valor del arreglo de ángulos si cada valor esta dentro de su correspondiente rango de giro (función nearValue). En caso de que el valor este fuera del rango, regresar el limite del rango más cercano.
 func nearValue(value: Int, range: ClosedInterval<Int> ) ->  Int {
-    return value // Empty - Replace me
+    return value // Change this!
 }
 
 func applyConstraint(value: Int, range: ClosedInterval<Int> ) -> Int {
-    return nearValue(value, range) // Empty - Replace me
+    return value // Change this!
 }
 
 let rango:[ClosedInterval<Int>] = [10...60, -30...75, 0...70]
