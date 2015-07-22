@@ -13,6 +13,9 @@ println("Hola Mundo!") // View on Assitant Editor
 //: * Importar alguna librería para imprimir, e.g. *<sdtio.h>*
 //: * Agregar punto-y-coma (;) al final de cada sentencia
 //:
+//: NOTA: No olvide mostrar editor asistente para ver salida de consola
+//:       ( View / Assistant Editor / Show Assistant Editor )
+//:
 //: ## 1.2 DATOS
 //: -----
 //: ### 1.2.1 VARIABLES (var)
@@ -42,7 +45,8 @@ let  area = Int(π * pow(radio,2))
 "El área del círculo es \(area)"
 "Hola \(nombre)!"
 "Has vivido \(edad * 365) días"
-"El área real es \(π * pow(radio,2))"
+import Foundation
+String(format:"El área real es %0.2f", π * pow(radio,2))
 //: ### 1.2.3 OPCIONALES
 var captura_edad: Int? = 15
 if captura_edad != nil {
@@ -122,28 +126,68 @@ for x in "elcaro".uppercaseString {
     k.insert(x, atIndex:0)
 }
 println(k)
-//: ## EJERCICIOS
-// Reduce angles to given constraint
+//: ## QUIZ
+//: 1. Cómo expreso correctamente una fracción constante?Modifique la expresión para obtener una constante de  precisión sencilla de punto flotante
+// let medio = 1 / 2
+let medio = Float(1.0 / 2.0)
+
+//: 2. Imprima a cuántos litros equivale un medio galón usando interpolación de texto con dos decimales de precisión
+let galon: Float = 3.7854118
+println(String(format: "medio galón son %0.2f litros", medio * galon))
+
+//: 3. Cómo especifico correctamente un número opcional para la variable díasDeEstancia
+// var díasDeEstancia = nil
+var díasDeEstancia: Int? = nil
+
+//: 4. Cómo calculo para todos los casos, el número total de días de viaje? Para ello debo sumar los días de transporte y estancia. __Nota:__ Si no se especifican días de estancia, asuma un valor de un día.
+let díasTransporte = 2
+let totalDíasViaje = (díasDeEstancia ?? 1) + díasTransporte
+
+//: 5. Escriba una sentencia switch/case que dado el peso de una persona imprima peso normal si esta entre 60 y 75 kgs, desnutrición de 50 a menos de 60 kgs y obesidad para más de 75 kgs. Cualquier otro caso debe reportar peso anormal
+let peso = 80
+switch peso {
+case 50..<60:
+    println("Desnutrición")
+case 60...75:
+    println("Normal")
+case _ where peso > 75:
+    println("Obesidad")
+default:
+    println("Peso anormal")
+}
+
+//: 6. Declare un ciclo que imprima los valores pares dentro de un rango entero, ej. de 10 a 30
+for i in 10...30 {
+    if i % 2 == 0 {
+        println(i)
+    }
+}
+
+//: 7. Defina una función r2a(rangoEntero) -> arregloEntero que convierta un rango entero a un arreglo filtrando sólo los valores pares, ej. r2a(5...13) regresa [6,8,10,12]
+func r2a(r: Range<Int>) -> [Int] {
+    var v = [Int]()
+    for i in r {
+        if i % 2 == 0 {
+            v.append(i)
+        }
+    }
+    return v
+}
+r2a(5...13)
+
+//: 8. AVANZADO: Sea un arreglo de rangos de giro de cada extremidad (rango) y un arreglo de ángulos enteros de giro captados (ang), defina la función applyConstraint() que verifica para cada valor del arreglo de ángulos si cada valor esta dentro de su correspondiente rango de giro (función nearValue). En caso de que el valor este fuera del rango, regresar el limite del rango más cercano.
 func nearValue(value: Int, range: ClosedInterval<Int> ) ->  Int {
-    return abs(range.start - value) < abs(value - range.end) ? range.start : range.end
+    return value // Empty - Replace me
 }
 
 func applyConstraint(value: Int, range: ClosedInterval<Int> ) -> Int {
-    return range.contains(value) ? value : nearValue(value,range)
+    return nearValue(value, range) // Empty - Replace me
 }
 
-let ct:[ClosedInterval<Int>] = [10...60, -30...75, 0...70]
+let rango:[ClosedInterval<Int>] = [10...60, -30...75, 0...70]
 let ang = [80, -40, 90]
 var vf = [Int]()
 for (i,a) in enumerate(ang) {
-    vf.append(applyConstraint(a, ct[i]))
+    vf.append(applyConstraint(a, rango[i]))
 }
 println(vf)
-//: ## QUIZ
-//: 1)
-//: 2)
-//: 3)
-//: 4)
-//: 5)
-//: NOTA: No olvides mostrar editor asistente para ver la salida de consola
-//:       ( View / Assistant Editor / Show Assistant Editor )
