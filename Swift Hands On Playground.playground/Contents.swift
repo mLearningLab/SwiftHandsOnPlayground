@@ -1,21 +1,24 @@
-//: # Swift Hands On Playground
-//: ### by Alberto Pacheco
-//: ### alberto@acm.org
-//: ### Nearsoft - July 2015 - ver. 1.2
-//: -----
-//: ## 1.1 MI PRIMER PROGRAMA
-//: Como dicta la tradición, tu primer programa en Swift
-//: sirve para imprimir **"Hola Mundo!"** solo se
-//: requiere **una línea** para escribir este programa:
+/*:
+ # Swift Hands On Playground
+ ### by Alberto Pacheco
+ ### alberto@acm.org
+ ### Nearsoft - July 2015 - ver. 1.2
+ -----
+ ## 1.1 MI PRIMER PROGRAMA
+ Como dicta la tradición, tu primer programa en Swift
+ sirve para imprimir **"Hola Mundo!"** solo se
+ requiere **una línea** para escribir este programa:
+*/
 println("Hola Mundo!") // View on Assitant Editor
-//: A diferencia de otros lenguajes, como Java y C/C++, **no** es necesario:
-//: * Definir una función y/o clase, e.g. *main()*
-//: * Importar alguna librería para imprimir, e.g. *<sdtio.h>*
-//: * Agregar punto-y-coma (;) al final de cada sentencia
-//:
-//: NOTA: No olvide mostrar editor asistente para ver salida de consola
-//:       ( View / Assistant Editor / Show Assistant Editor )
-//:
+/*:
+ A diferencia de otros lenguajes, como Java y C/C++, **no** es necesario:
+ * Definir una función y/o clase, e.g. *main()*
+ * Importar alguna librería para imprimir, e.g. *<sdtio.h>*
+ * Agregar punto-y-coma (;) al final de cada sentencia
+
+ NOTA: No olvide mostrar editor asistente para ver salida de consola
+       ( View / Assistant Editor / Show Assistant Editor )
+*/
 //: ## 1.2 DATOS
 //: -----
 //: ### 1.2.1 VARIABLES (var)
@@ -37,28 +40,28 @@ let     π = M_PI    // Alt + p
 let   hex = 0xFE0   // Hexadecimal
 let   bin = 0b100   // Binary
 let   oct = 0o20    // Octal
-let  edad = 19
+let  edad = 9
 let radio = 2.5
 //: __Int( )__ : Cast? Ctor?
 let  area = Int(π * pow(radio,2))
 //: Interpolación de texto
 "El área del círculo es \(area)"
 "Hola \(nombre)!"
-"Has vivido \(edad * 365) días"
+"\(7*edad) años-perro"
 import Foundation
 String(format:"El área real es %0.2f", π * pow(radio,2))
 //: ### 1.2.3 OPCIONALES
-var captura_edad: Int? = 15
+var captura_edad: Int? = 3
 if captura_edad != nil {
     let tmp = captura_edad!
-    "Has vivido \(12 * tmp) meses"
+    "\(7 * tmp) años-pero"
 } else {
     "Error: edad incorrecta o vacía!"
 }
 //: Caso #2 -- Usando __if let__
-captura_edad =  15 // Try: nil
+captura_edad =  5 // Try: nil
 if let tmp = captura_edad {
-    "Has vivido \(12 * tmp) meses"
+    "\(7 * tmp) años-perro"
 } else {
     "Error: edad incorrecta o en blanco!"
 }
@@ -66,9 +69,9 @@ if let tmp = captura_edad {
 //: -----
 //: ### 1.3.1 DECISION: SENTENCIA IF
 var dato: String = "123" // Try: "A123"
-if let d = dato.toInt() { // dato es opcional
+if let d = dato.toInt() { // no es nil?
     d + 10
-} else {
+} else { // es nil
     "Error"
 }
 //: ### 1.3.2 DECISION: SENTENCIA SWITCH
@@ -144,10 +147,10 @@ let peso = 80
 // }
 //: 6. Declare un ciclo que imprima los valores pares dentro de un rango entero, ej. de 10 a 30
 // for loop
-//: 7. Defina una función r2a(rangoEntero) -> arregloEntero que convierta un rango entero a un arreglo filtrando sólo los valores pares, ej. r2a(5...13) regresa [6,8,10,12]
+//: 7. BÁSICO-INTERMEDIO: Defina una función r2a(rangoEntero) -> arregloEntero que convierta un rango entero a un arreglo filtrando sólo los valores pares, ej. r2a(5...13) regresa [6,8,10,12]
 // func r2a(r: Range<Int>) -> [Int]
 // r2a(5...13) // prints [6,8,10,12]
-//: 8. AVANZADO: Sea un arreglo de rangos de giro de cada extremidad (rango) y un arreglo de ángulos enteros de giro captados (ang), defina la función applyConstraint() que verifica para cada valor del arreglo de ángulos si cada valor esta dentro de su correspondiente rango de giro (función nearValue). En caso de que el valor este fuera del rango, regresar el limite del rango más cercano.
+//: 8. BÁSICO-AVANZADO: Sea un arreglo de rangos de giro de cada extremidad (rango) y un arreglo de ángulos enteros de giro captados (ang), defina la función applyConstraint() que verifica para cada valor del arreglo de ángulos si cada valor esta dentro de su correspondiente rango de giro (función nearValue). En caso de que el valor este fuera del rango, regresar el limite del rango más cercano.
 func nearValue(value: Int, range: ClosedInterval<Int> ) ->  Int {
     return value // Change this!
 }
@@ -163,3 +166,6 @@ for (i,a) in enumerate(ang) {
     vf.append(applyConstraint(a, rango[i]))
 }
 println(vf)
+//: AVANZADO: Using tuples, closures & map algorithm
+var d2:[(Int,ClosedInterval<Int>)] = [(80,10...60), (-40,-30...75), (90,0...70)]
+d2.map(applyConstraint) // map algorithm
