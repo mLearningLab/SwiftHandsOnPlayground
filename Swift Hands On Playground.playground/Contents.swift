@@ -8,7 +8,9 @@
  Como dicta la tradición, tu primer programa en Swift
  sirve para imprimir **"Hola Mundo!"** solo se
  requiere **una línea** para escribir este programa:
+*/
 println("Hola Mundo!") // View on Assitant Editor
+/*:
  A diferencia de otros lenguajes, como Java y C/C++, **no** es necesario:
  * Definir una función y/o clase, e.g. *main()*
  * Importar alguna librería para imprimir, e.g. *<sdtio.h>*
@@ -199,3 +201,7 @@ let f = { (v:Int, r:ClosedInterval<Int>) in // Closure
     r.contains(v) ? v : (abs(r.start-v) < abs(v-r.end) ? r.start : r.end)
 }
 d2.map(f) // map algorithm
+
+
+
+
