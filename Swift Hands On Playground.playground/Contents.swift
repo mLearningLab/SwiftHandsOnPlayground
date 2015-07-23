@@ -180,6 +180,11 @@ func applyConstraint(value: Int, range: ClosedInterval<Int> ) -> Int {
     return range.contains(value) ? value : nearValue(value,range)
 }
 
+let apply = {
+    $1.contains($0) ? $0 : nearValue($0, $1)
+}
+
+
 let rango:[ClosedInterval<Int>] = [10...60, -30...75, 0...70]
 let ang = [80, -40, 90]
 var vf = [Int]()
@@ -187,3 +192,14 @@ for (i,a) in enumerate(ang) {
     vf.append(applyConstraint(a, rango[i]))
 }
 println(vf)
+
+var d1 = [(80,60), (40,75), (45,70)]
+d1.map { $0 + $1 }
+
+var d2:[(Int,ClosedInterval<Int>)] = [(80,60...70), (40,75...90), (35,45...80)]
+//d2.map(applyConstraint)
+let f = { (v:Int, r:ClosedInterval<Int>) in
+    r.contains(v) ? v : (abs(r.start-v) < abs(v-r.end) ? r.start : r.end)
+}
+d2.map(f)
+
