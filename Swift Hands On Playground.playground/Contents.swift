@@ -1,21 +1,22 @@
-//: # Swift Hands On Playground
-//: ### by Alberto Pacheco
-//: ### alberto@acm.org
-//: ### Nearsoft - July 2015 - ver. 1.2
-//: -----
-//: ## 1.1 MI PRIMER PROGRAMA
-//: Como dicta la tradición, tu primer programa en Swift
-//: sirve para imprimir **"Hola Mundo!"** solo se
-//: requiere **una línea** para escribir este programa:
+/*:
+ # Swift Hands On Playground
+ ### by Alberto Pacheco
+ ### alberto@acm.org
+ ### Nearsoft - July 2015 - ver. 1.2
+ -----
+ ## 1.1 MI PRIMER PROGRAMA
+ Como dicta la tradición, tu primer programa en Swift
+ sirve para imprimir **"Hola Mundo!"** solo se
+ requiere **una línea** para escribir este programa:
 println("Hola Mundo!") // View on Assitant Editor
-//: A diferencia de otros lenguajes, como Java y C/C++, **no** es necesario:
-//: * Definir una función y/o clase, e.g. *main()*
-//: * Importar alguna librería para imprimir, e.g. *<sdtio.h>*
-//: * Agregar punto-y-coma (;) al final de cada sentencia
-//:
-//: NOTA: No olvide mostrar editor asistente para ver salida de consola
-//:       ( View / Assistant Editor / Show Assistant Editor )
-//:
+ A diferencia de otros lenguajes, como Java y C/C++, **no** es necesario:
+ * Definir una función y/o clase, e.g. *main()*
+ * Importar alguna librería para imprimir, e.g. *<sdtio.h>*
+ * Agregar punto-y-coma (;) al final de cada sentencia
+
+ NOTA: No olvide mostrar editor asistente para ver salida de consola
+       ( View / Assistant Editor / Show Assistant Editor )
+*/
 //: ## 1.2 DATOS
 //: -----
 //: ### 1.2.1 VARIABLES (var)
@@ -180,11 +181,6 @@ func applyConstraint(value: Int, range: ClosedInterval<Int> ) -> Int {
     return range.contains(value) ? value : nearValue(value,range)
 }
 
-let apply = {
-    $1.contains($0) ? $0 : nearValue($0, $1)
-}
-
-
 let rango:[ClosedInterval<Int>] = [10...60, -30...75, 0...70]
 let ang = [80, -40, 90]
 var vf = [Int]()
@@ -193,13 +189,13 @@ for (i,a) in enumerate(ang) {
 }
 println(vf)
 
+//: Using closures & map algorithm
 var d1 = [(80,60), (40,75), (45,70)]
 d1.map { $0 + $1 }
 
 var d2:[(Int,ClosedInterval<Int>)] = [(80,60...70), (40,75...90), (35,45...80)]
-//d2.map(applyConstraint)
-let f = { (v:Int, r:ClosedInterval<Int>) in
+// d2.map(applyConstraint)
+let f = { (v:Int, r:ClosedInterval<Int>) in // Closure
     r.contains(v) ? v : (abs(r.start-v) < abs(v-r.end) ? r.start : r.end)
 }
-d2.map(f)
-
+d2.map(f) // map algorithm
